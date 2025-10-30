@@ -1,0 +1,277 @@
+:root {
+  --primary-color: #4CAF50;
+  --secondary-color: #8BC34A;
+  --accent-color: #FF9800;
+  --light-color: #F1F8E9;
+  --dark-color: #1B5E20;
+  --text-color: #212121;
+  --text-light: #757575;
+}
+
+/* CORRECCIÓN ANTI-BUG: Usamos el selector * para aplicar font y background a todos los elementos. */
+/* IMPORTANTE: ELIMINAMOS 'padding: 20px;' de aquí, ya que buguea la aplicación. */
+
+/* CORRECCIÓN DE ALCANCE: Usamos 'body' para los estilos que afectan al layout general y color de texto. */
+/* MANTENEMOS 'padding: 20px;' aquí para aplicarlo al contenedor principal de la página. */
+body.page--cart {
+    /* 1. Fondo de textura para la tienda */
+    background-image: repeating-linear-gradient(45deg, rgba(0,0,0,0.03) 0px, rgba(0,0,0,0.03) 1px, transparent 1px, transparent 11px) !important;
+    
+    /* 2. Color de fondo base */
+    background-color: #f8fdf7 !important;
+    
+    /* 3. El padding debe ir en el contenedor .container de la página, NO en el body */
+    padding: 20px 0; /* Aplicamos padding horizontal si lo necesitas, pero el vertical puede ser peligroso */
+    
+    /* 4. Reseteamos otros fondos si existen */
+    background-size: initial !important; 
+    background-attachment: initial !important; 
+    background-position: initial !important; 
+    
+    color: var(--text-color);
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* 💡 MOVER el padding al contenedor principal, que en CartPage.jsx es el .container */
+.container {
+    padding: 20px; /* Asumiendo que quieres 20px de padding alrededor de todo el contenido */
+    /* Asegúrate de que el body.page--cart no tenga padding vertical para evitar doble scroll */
+}
+
+
+.header {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--dark-color) 100%);
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  /* Centrado */
+  text-align: center; 
+}
+
+/* Para forzar color blanco en el enlace <a> */
+.header a, 
+.header a:hover, 
+.header a:visited {
+    color: white; 
+    text-decoration: none; 
+}
+
+.header h1 {
+  font-weight: 700;
+  /* Aumentar el tamaño de la fuente (puedes ajustarlo si es necesario) */
+  font-size: 2.5rem; 
+  /* Compactar las letras verticalmente si el texto ocupa varias líneas (opcional) */
+  line-height: 1.1; 
+  /* Separar el título del párrafo inferior */
+  margin-bottom: 0.5rem; 
+}
+
+.header p {
+  opacity: 0.9;
+  /* Reducir el margen superior del párrafo si es necesario */
+  margin-top: 0.5rem; 
+  /* Ajustar el tamaño del subtítulo */
+  font-size: 1rem; 
+}
+
+/* (El resto de tus reglas CSS (.producto, .carrito-container, etc.) va aquí abajo, sin cambios) */
+
+.producto {
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  transition: transform 0.3s, box-shadow 0.3s;
+  border-left: 4px solid var(--primary-color);
+}
+
+.producto:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.12);
+}
+
+.producto h3 {
+  color: var(--dark-color);
+  font-weight: 600;
+}
+
+.producto p {
+  margin-bottom: 8px;
+}
+
+.categoria {
+  background-color: var(--light-color);
+  color: var(--dark-color);
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+.precio {
+  font-weight: 700;
+  color: var(--dark-color);
+  font-size: 1.2rem;
+}
+
+.btn-agregar {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 15px;
+  font-weight: 600;
+  transition: background-color 0.3s;
+}
+
+.btn-agregar:hover {
+  background-color: var(--dark-color);
+}
+
+.carrito-container {
+    /* ✨ MANTENER ESTOS ESTILOS BASE SIEMPRE */
+    background-color: white; 
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.carrito-container h2 {
+  color: var(--dark-color);
+  font-weight: 700;
+  border-bottom: 2px solid var(--light-color);
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.carrito-fijo {
+    /* Propiedades de Posicionamiento */
+    position: fixed; 
+    top: 20px;         /* Le damos el top que tenía antes */
+    width: inherit;    /* Mantiene el ancho de la columna col-lg-4 */
+    z-index: 1000; 
+
+    /* ✨ COPIAMOS LOS ESTILOS VISUALES DE .carrito-container para cuando está fijo */
+    background-color: white; 
+    border-radius: 10px; 
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2); /* Opcional: una sombra un poco más fuerte */
+    padding: 20px; /* Aseguramos el padding */
+}
+
+.item-carrito {
+  border-bottom: 1px solid #eee;
+  padding: 15px 0;
+}
+
+.item-carrito:last-child {
+  border-bottom: none;
+}
+
+.item-carrito p {
+  margin-bottom: 8px;
+}
+
+.btn-cantidad {
+  background-color: var(--light-color);
+  border: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  font-weight: bold;
+  margin: 0 5px;
+}
+
+.btn-cantidad:hover {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+#total {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--dark-color);
+  margin: 20px 0;
+}
+
+#btnLimpiar {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-weight: 600;
+  width: 100%;
+  transition: background-color 0.3s;
+}
+
+#btnLimpiar:hover {
+  background-color: #d32f2f;
+}
+
+.filtro-container {
+  background-color: white;
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+#filtroCategoria {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 8px 15px;
+  margin-left: 10px;
+}
+
+/* Estilos para la flecha circular de "Volver a la Tienda" */
+.icon-back-to-home {
+    /* 1. Definir tamaño fijo y padding */
+    width: 35px;
+    height: 35px;
+    padding: 0 !important; /* Quita todo el padding heredado */
+    
+    /* 2. Dar forma circular */
+    border-radius: 50%;
+    
+    /* 3. Estilos visuales */
+    background-color: var(--light-color); /* Fondo verde muy claro */
+    border: 1px solid var(--primary-color);
+    display: flex; /* Asegura que el ícono esté centrado */
+    justify-content: center;
+    align-items: center;
+    font-size: 0.9rem; /* Ícono un poco más pequeño */
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
+}
+
+.icon-back-to-home:hover {
+    background-color: var(--primary-color);
+    color: white !important; /* El color debe ser blanco al hacer hover */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.vacío {
+  text-align: center;
+  padding: 30px;
+  color: var(--text-light);
+}
+
+.vacío i {
+  font-size: 3rem;
+  margin-bottom: 15px;
+  color: #ddd;
+}
+
+@media (max-width: 992px) { /* Usamos 992px (breakpoint lg de Bootstrap) */
+    /* Desactivamos el fijo en pantallas medianas y pequeñas */
+    .carrito-fijo {
+        position: static;
+        width: 100%;
+        box-shadow: none;
+    }
+}
